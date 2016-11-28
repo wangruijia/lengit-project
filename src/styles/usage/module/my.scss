@@ -1,0 +1,19 @@
+@import "../../lib/widget/yo-dialog";
+
+@include yo-dialog(
+    $name:a,
+    $height:1.5rem
+){
+    footer button:first-child{
+        background:#eee!important;
+    }
+}
+
+.login{
+	padding:.1rem;
+	p{
+	   margin-bottom:.1rem;
+	}
+	width:100%;
+	height:100%;
+}

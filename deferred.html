@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./src/scripts/lib/jquery-1.11.0.min.js"></script>
+	<script>
+        $.ajax("./mock/livelist.json")
+         .done(function(res){
+           console.log(res);
+          })
+         .fail(function(){
+
+          })
+        // ajax连调
+        $.when($.ajax("./mock/livelist.json"),$.ajax("./mock/liveback.json"))
+         .done(function(){
+         	console.log("ok");
+         })
+         .fail(function(){
+         	console.log("no");
+         })
+
+         // 创建一个deferred对象
+         var dtd = $.Deferred();
+         var wait = function(d){
+         	var task = function(){
+         		alert("hello Deferred!");
+         		d.resolve();
+         		//d.reject();
+         	}
+         	setTimeout(task,2000);
+         	return d.promise();
+         }
+         
+         var d = wait(dtd);
+         $.when(d)
+          .done(function(){
+          	  alert("成功了");
+          })
+          .fail(function(){
+          	  alert("失败了");
+          })
+          //d.resolve();
+	</script>
+</body>
+</html>
